@@ -1,0 +1,99 @@
+conky.config = {
+	background = true,
+	update_interval = 2,
+	cpu_avg_samples = 2,
+	net_avg_samples = 2,
+	out_to_console = false,
+	override_utf8_locale = true,
+	double_buffer = true,
+	no_buffers = true,
+	text_buffer_size = 32768,
+	imlib_cache_size = 0,
+	own_window = true,
+	own_window_type = 'normal',
+	own_window_transparent = true,
+	own_window_hints = 'undecorated,below,sticky,skip_taskbar,skip_pager',
+	own_window_argb_visual = true,
+	own_window_argb_value = 255,
+	border_inner_margin = 10,
+	border_outer_margin = 10,
+	xinerama_head = 2,
+	alignment = 'top_right',
+	gap_x = 15,
+	gap_y = 5,
+	draw_shades = true,
+	draw_outline = false,
+	draw_borders = false,
+	draw_graph_borders = true,
+	use_xft = true,
+	font = 'Roboto Condensed:size=13',
+	xftalpha = 0.8,
+	uppercase = false,
+	default_color = 'B3DEF4',
+	color1 = 'B3DEF4',
+	color0 = 'ffffff',
+	color2 = 'C0E0F2',
+	format_human_readable = true,
+};
+conky.text = [[
+${voffset 5}${alignc}${font Font Awesome 5 Free:style=Solid:size=42} ${font LED.Font:size=52}${time %H:%M}${font Font Awesome 5 Free:style=Solid:size=42} ${font}
+${voffset 2}${alignc}${font :size=10:bold}${time %A, %d %B %Y}
+${hr}
+${font Font Awesome 5 Free:style=Solid:size=12} ${font LED.Font:bold:size=14}${kernel} ${font Font Awesome 5 Free:style=Solid:size=12}${font LED.Font:bold:size=14} ${machine} ${alignr}${uptime}
+${font Font Awesome 5 Free:style=Solid:size=12} ${font LED.Font:bold:size=14}1: ${alignc}${cpu cpu1} % ${alignr}${cpubar cpu1 12,160}
+${font Font Awesome 5 Free:style=Solid:size=12} ${font LED.Font:bold:size=14}2: ${alignc}${cpu cpu2} % ${alignr}${cpubar cpu2 12,160}
+${font Font Awesome 5 Free:style=Solid:size=12} ${font LED.Font:bold:size=14}3: ${alignc}${cpu cpu3} % ${alignr}${cpubar cpu3 12,160}
+${font Font Awesome 5 Free:style=Solid:size=12} ${font LED.Font:bold:size=14}4: ${alignc}${cpu cpu4} % ${alignr}${cpubar cpu4 12,160}
+${font Font Awesome 5 Free:style=Solid:size=12} ${font LED.Font:bold:size=14}5: ${alignc}${cpu cpu5} % ${alignr}${cpubar cpu5 12,160}
+${font Font Awesome 5 Free:style=Solid:size=12} ${font LED.Font:bold:size=14}6: ${alignc}${cpu cpu6} % ${alignr}${cpubar cpu6 12,160}
+
+${font Font Awesome 5 Free:style=Solid:size=12}${font LED.Font:bold:size=12} RAM:  ${mem} / ${memfree}/ ${memmax} ${alignr}$memperc% 
+${membar 6}
+${font Font Awesome 5 Free:style=Solid:size=12}${font LED.Font:bold:size=12} SWAP: ${swap} / ${swapfree}/ ${swapmax} ${alignr} $swapperc% 
+${swapbar 6}
+
+${font Font Awesome 5 Free:style=Solid:size=12} ${font LED.Font:bold:size=12}${color1}${addrs eth0}${color}
+${hr}
+	${goto 20}${upspeedgraph eth0 30,178 0EABB6 347993}${goto 202}${downspeedgraph eth0 30,175 E0E08B D7548A}
+	${font Font Awesome 5 Free:style=Solid:size=12}${goto 20}${font LED.Font:bold:size=12} ${upspeed eth0}${font Font Awesome 5 Free:style=Solid:size=12}${goto 202}${font LED.Font:bold:size=12} ${downspeed eth0}
+
+${font Font Awesome 5 Free:style=Solid:size=12} ${font LED.Font:bold:size=14}${color2}Disks${color}
+${hr}
+${font Font Awesome 5 Free:style=Regular:size=12}${font LED.Font:bold:size=14} root ${fs_used_perc /}% ${fs_used /} / ${fs_size /}
+${fs_bar 8 /} 
+${font Font Awesome 5 Free:style=Regular:size=12}${font LED.Font:bold:size=14} /home ${fs_used_perc /home}% ${fs_used /home} / ${fs_size /home} 
+${fs_bar 8 /home} 
+${font LED.Font:size=12}${offset 2}${voffset 1}I/O » $color${diskio}$color${alignr 5}${diskiograph 8,60}
+
+${font LED.Font:bold:size=14}${color2}${goto 20}Name ${goto 200}Pid${goto 255}Cpu%${goto 310}Mem%${color}
+${hr}
+	${font FiraCode:size=10}${goto 20}${top name 1} ${goto 180}${top pid 1}${goto 235}${top cpu 1}${goto 290}${top mem 1}
+	${font FiraCode:size=10}${goto 20}${top name 2} ${goto 180}${top pid 2}${goto 235}${top cpu 2}${goto 290}${top mem 2}
+	${font FiraCode:size=10}${goto 20}${top name 3} ${goto 180}${top pid 3}${goto 235}${top cpu 3}${goto 290}${top mem 3}
+	${font FiraCode:size=10}${goto 20}${top name 4} ${goto 180}${top pid 4}${goto 235}${top cpu 4}${goto 290}${top mem 4}
+	${font FiraCode:size=10}${goto 20}${top name 5} ${goto 180}${top pid 5}${goto 235}${top cpu 5}${goto 290}${top mem 5}
+	
+${font Font Awesome 5 Free:style=Solid:size=12}  ${font LED.Font:bold:size=14}${color2}Temperature${color}
+${hr}
+${font LED.Font:bold:size=14}ACPI:  ${acpitemp}${font Font Awesome 5 Free:style=Solid:size=12}      ${font LED.Font:bold:size=14}GPU:   ${nvidia temp}${font Font Awesome 5 Free:style=Solid:size=12} 
+${font LED.Font:bold:size=14}HDD1:  ${hddtemp /dev/sda}${font Font Awesome 5 Free:style=Solid:size=12} ${font LED.Font:bold:size=14}   HDD2:  ${hddtemp /dev/sdb}${font Font Awesome 5 Free:style=Solid:size=12} 
+${hr}
+${font Ubuntu:bold:size=7}${color}open ports: ${alignr}${color4}${tcp_portmon 1 65535 count}
+${font Ubuntu:bold:size=7}${color}${offset 10}IP${alignr 2}DPORT
+${font Ubuntu:normal:size=7}${color1}${tcp_portmon 1 65535 rip  0}${alignr 1}${tcp_portmon 1 65535 rport  0}
+${font Ubuntu:normal:size=7}${color1}${tcp_portmon 1 65535 rip  1}${alignr 1}${tcp_portmon 1 65535 rport  1}
+${font Ubuntu:normal:size=7}${color1}${tcp_portmon 1 65535 rip  2}${alignr 1}${tcp_portmon 1 65535 rport  2}
+${font Ubuntu:normal:size=7}${color1}${tcp_portmon 1 65535 rip  3}${alignr 1}${tcp_portmon 1 65535 rport  3}
+${font Ubuntu:normal:size=7}${color1}${tcp_portmon 1 65535 rip  4}${alignr 1}${tcp_portmon 1 65535 rport  4}
+${font Ubuntu:normal:size=7}${color1}${tcp_portmon 1 65535 rip  5}${alignr 1}${tcp_portmon 1 65535 rport  5}
+${font Ubuntu:normal:size=7}${color1}${tcp_portmon 1 65535 rip  6}${alignr 1}${tcp_portmon 1 65535 rport  6}
+${font Ubuntu:normal:size=7}${color1}${tcp_portmon 1 65535 rip  7}${alignr 1}${tcp_portmon 1 65535 rport  7}
+${font Ubuntu:normal:size=7}${color1}${tcp_portmon 1 65535 rip  8}${alignr 1}${tcp_portmon 1 65535 rport  8}
+${font Ubuntu:normal:size=7}${color1}${tcp_portmon 1 65535 rip  9}${alignr 1}${tcp_portmon 1 65535 rport  9}
+${font Ubuntu:normal:size=7}${color1}${tcp_portmon 1 65535 rip 10}${alignr 1}${tcp_portmon 1 65535 rport 10}
+${font Ubuntu:normal:size=7}${color1}${tcp_portmon 1 65535 rip 11}${alignr 1}${tcp_portmon 1 65535 rport 11}
+${font Ubuntu:normal:size=7}${color1}${tcp_portmon 1 65535 rip 12}${alignr 1}${tcp_portmon 1 65535 rport 12}
+${font Ubuntu:normal:size=7}${color1}${tcp_portmon 1 65535 rip 13}${alignr 1}${tcp_portmon 1 65535 rport 13}
+${font Ubuntu:normal:size=7}${color1}${tcp_portmon 1 65535 rip 14}${alignr 1}${tcp_portmon 1 65535 rport 14}
+${font Ubuntu:normal:size=7}${color1}${tcp_portmon 1 65535 rip 15}${alignr 1}${tcp_portmon 1 65535 rport 15}
+]];
